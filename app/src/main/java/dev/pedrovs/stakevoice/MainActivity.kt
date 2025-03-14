@@ -15,7 +15,9 @@ import androidx.navigation.navArgument
 import com.google.firebase.auth.FirebaseAuth
 import dev.pedrovs.stakevoice.screens.AuthScreen
 import dev.pedrovs.stakevoice.screens.CompanyDetailsScreen
+import dev.pedrovs.stakevoice.screens.FeedbackScreen
 import dev.pedrovs.stakevoice.screens.HomeScreen
+import dev.pedrovs.stakevoice.screens.UserFeedbackListScreen
 import dev.pedrovs.stakevoice.ui.theme.StakeVoiceTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,6 +49,18 @@ class MainActivity : ComponentActivity() {
                         ) { backStackEntry ->
                             val companyId = backStackEntry.arguments?.getString("companyId") ?: ""
                             CompanyDetailsScreen(navController, companyId)
+                        }
+
+                        composable(
+                            route="createFeedback/{companyId}",
+                            arguments = listOf(navArgument("companyId") { type = NavType.StringType })
+                        ) { backStackEntry ->
+                            val companyId = backStackEntry.arguments?.getString("companyId") ?: ""
+                            FeedbackScreen(navController, companyId)
+                        }
+
+                        composable(route="myFeedbacks") {
+                            UserFeedbackListScreen(navController)
                         }
                     }
                 }

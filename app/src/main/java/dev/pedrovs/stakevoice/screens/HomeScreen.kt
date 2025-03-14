@@ -85,6 +85,13 @@ fun HomeScreen(navController: NavController) {
                             onDismissRequest = { showMenu = false }
                         ) {
                             DropdownMenuItem(
+                                text = { Text("Meus feedbacks") },
+                                onClick = {
+                                    showMenu = false
+                                    navController.navigate("myFeedbacks")
+                                }
+                            )
+                            DropdownMenuItem(
                                 text = { Text("Sair") },
                                 onClick = {
                                     auth.signOut()
@@ -152,8 +159,7 @@ fun CompanyItem(navController: NavController, empresa: Empresa) {
                 painter = imagePainter,
                 contentDescription = "Imagem da empresa",
                 contentScale = ContentScale.FillBounds,
-                modifier = Modifier.fillMaxHeight().width(80.dp).defaultMinSize(minHeight = 64.dp)
-                    .background(color = Color(0x80000000))
+                modifier = Modifier.fillMaxHeight().width(80.dp).defaultMinSize(minHeight = 64.dp).clip(RoundedCornerShape(8.dp))
             )
         }
     }

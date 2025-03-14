@@ -128,7 +128,9 @@ fun CompanyDetailsScreen(navController: NavController, companyId: String) {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { }) {
+            FloatingActionButton(onClick = {
+                navController.navigate("createFeedback/$companyId")
+            }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Adicionar")
             }
         }
@@ -198,7 +200,7 @@ fun CompanyDetailsScreen(navController: NavController, companyId: String) {
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
 
-            LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
+            LazyColumn(modifier = Modifier.padding(horizontal = 16.dp).height(350.dp).fillMaxWidth()) {
                 items(noticias) { noticia ->
                     NoticeItem(noticia)
                     Spacer(modifier = Modifier.height(8.dp))
@@ -230,7 +232,7 @@ fun NoticeItem(noticia: Noticia) {
             .fillMaxWidth()
             .clickable { },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(12.dp)
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Text(text = noticia.titulo, fontSize = 16.sp, fontWeight = FontWeight.Bold)
